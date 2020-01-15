@@ -1,19 +1,15 @@
 # react-playground
-よりうまい肉を食うぞ
+よりうまい刺し身を食うぞ
 
 ## Purpose
 
-もっとうまい肉を食べれるようになる。
+もっとうまい刺し身を食べれるようになる。
 
 ## Scope
 
-- React
-- Typescript
-- less syntax
-- Style(CSS) design
+- CSS for Document Layout
 
 ## What I need?
 
-- きれいとはなにかを考える
-- できてるものより、できないものを考える
-- 悩ましい部分に自分ルールを持つ
+- よくあるレイアウトカタログを作ります
+- もうレイアウトで迷わないぞ

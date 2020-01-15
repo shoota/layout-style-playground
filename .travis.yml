@@ -7,33 +7,31 @@ language: node_js
 node_js: lts/*
 env:
   global:
-  - secure: NOEB9sQFF/yUHb62CYHShk+OEOv/4DbRay2RzWWd3SvxayP9sGQXdC5G2DI4acyTcXSdCykYEiuHh+M0sH/jdW8qZA8rMAReTXCHSC+RTBSPkA2gSPzw/fT+4HjLyTPwPNt2g5P1nKt4k9w2xaUrMCFWbE+ED7Mk9+Y4iasv9J/nFE2p0iccLRcee0tmvPB3vZDe/zkzK7IlQQxTt9K1VHsujRNueukAahlBCayx73PXJzKjom7lZ996tWlfFsfIQlP9Ab0PuI2aaPUIYULloB6YZ2/LvnA5uxuqdKUWA9odNUIAqBonlYq4DHoiRDOXCLMwFSL8UCSfLHhM/Hy3X0kZqV90HQb7E+JDMtw9eJYiOSIdPUDRUJtbgJaCwtGuUgxLdcfyUnVmqXmVGK0lOq04tv5+Q+ZZSYs+yp8hUOTMtZlJIeJ6zjaw/3gGT/pu9LSerw7jrqBqzUKYNCo8SZijSTqzMMq3wM2SS74X7k62gw0Wekrsv9TWfu9LdMzc9pPagFJBoK0XBsxkwBax7Ybw2887B4OY/xxtglxqi5lHl3VpMJwZN4p6gNpV1q8ryPBeoHG5KbAsr7LKxy5nyNZupph3E9A4FZesXObNef6oYCYcmBYc1q8DbqJUUr2BCVl2etG8c6MMbGqW/rFCa9XTQbXyMk3J+7iuAvsHeNk=
+    secure: c6M9muLqt46u4rzczm+IW+IThPBdOkHIU9yXOZvI86bk3LaeX9A6psIrbZ3rmaUJZl4pPTzhfZcxonwbS3td69vR79q/JoizHK+TdyDHUFyBDsJfgOwUUEMMnwHzjgg3ZWTsZe4GKdtj6hFdlOKgeZqfUPzLauq0vmSfkao2NUErzkGaN3w3z4C6jTwbdVFSxVW21Cw+GgFPCA14D2Z6s/c+ZJWcWHFRiYKkTUNQhy+iiN1KTlHlw/txYtUX2E7lvsB9Q9zdES6SqdulqsLlf/N5vRsdnYosijEA3YjHpv6bLVnkagBYeHPLj1L8R5QJAqobTcxqfL3CotP3h+kUlrGZGtwDfXnSP2ndZyVd0DFQRG+WZa1tWND3Srgz8XVqQq8BkfcruObwovF1exlf6mGmMFii/pxSLvC2k/4hGJYhJLiHb4y7onLnbe9K1d1KTkoKxlreauwWTEgbZ+lR0vXs2rKJUUdatObihc/09UB5Uze1OYbWKJciigiPiPY9gzJqkbJdKy0n8b8BWPAvBexJGQPeU8g3PMBuGeSr1Ga23JGNENgYfYKyr1FRc4uUL+oAByMwOQ9kkoDQMaz7vywBtVzuWBGgVGAP24xGfQlqalm0sPzPGprME6TADJLfvzxdUjzkXd75VLq2ov3cRzbmuLD7b80n0poCeqRVwCM=
 stages:
 - test
 - name: deploy
 jobs:
   include:
   - stage: Test
-    name: "lint"
+    name: lint
     script:
     - yarn lint
-  -
-    script:
+  - script:
     - yarn test
-    name: "test"
-  -
-    script:
+    name: test
+  - script:
     - yarn build-storybook
-    name: "build storybook"
+    name: build storybook
   - stage: deploy
-    name: "deploy to gh-page"
+    name: deploy to gh-page
     env: gh-page
     script:
-    - yarn build
+    - yarn build-storybook
     deploy:
       provider: pages
       skip-cleanup: true
-      github-token: $GITHUB_TOKEN
+      github-token: "$GITHUB_TOKEN"
       keep-history: true
       local-dir: public
       on:
